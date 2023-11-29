@@ -2,9 +2,14 @@
 {% load static %}
 
 {% block main %}
-<section>
-    <a
-        href="https://accounts.google.com/signin/oauth/error/v2?authError=ChVyZWRpcmVjdF91cmlfbWlzbWF0Y2gSyQEKTsOjbyDDqSBwb3Nzw612ZWwgZmF6ZXIgbG9naW4gbm8gYXBwIHBvcnF1ZSBlbGUgbsOjbyBvYmVkZWNlIMOgIHBvbMOtdGljYSBkbyBPQXV0aCAyLjAgZG8gR29vZ2xlLgoKU2Ugdm9jw6ogw6kgbyBkZXNlbnZvbHZlZG9yIGRvIGFwcCwgcmVnaXN0cmUgbyBVUkkgZGUgcmVkaXJlY2lvbmFtZW50byBubyBDb25zb2xlIGRvIEdvb2dsZSBDbG91ZC4KICAabWh0dHBzOi8vZGV2ZWxvcGVycy5nb29nbGUuY29tL2lkZW50aXR5L3Byb3RvY29scy9vYXV0aDIvd2ViLXNlcnZlciNhdXRob3JpemF0aW9uLWVycm9ycy1yZWRpcmVjdC11cmktbWlzbWF0Y2ggkAMqRQoMcmVkaXJlY3RfdXJpEjVodHRwOi8vMTI3LjAuMC4xOjgwMDAvYWNjb3VudHMvZ29vZ2xlL2xvZ2luL2NhbGxiYWNrLzK9AggBEskBCk7Do28gw6kgcG9zc8OtdmVsIGZhemVyIGxvZ2luIG5vIGFwcCBwb3JxdWUgZWxlIG7Do28gb2JlZGVjZSDDoCBwb2zDrXRpY2EgZG8gT0F1dGggMi4wIGRvIEdvb2dsZS4KClNlIHZvY8OqIMOpIG8gZGVzZW52b2x2ZWRvciBkbyBhcHAsIHJlZ2lzdHJlIG8gVVJJIGRlIHJlZGlyZWNpb25hbWVudG8gbm8gQ29uc29sZSBkbyBHb29nbGUgQ2xvdWQuCiAgGm1odHRwczovL2RldmVsb3BlcnMuZ29vZ2xlLmNvbS9pZGVudGl0eS9wcm90b2NvbHMvb2F1dGgyL3dlYi1zZXJ2ZXIjYXV0aG9yaXphdGlvbi1lcnJvcnMtcmVkaXJlY3QtdXJpLW1pc21hdGNo&client_id=1028116285378-05vuvq5fnmmm5gsenste02qbm8aq59v9.apps.googleusercontent.com">Login
-        with google</a>
+<section class="background-imgage img-college d-flex justify-content-center align-items-center my-5" style="height: 80vh !important;">
+    <div class="d-block">
+        <h2 class="text-center">Olá, {{ request.user.username }}</h2>
+        <p class="fs-3 text-center" style="width: 700px !important;">
+            Seja muito bem-vindo(a) ao nosso Portal do Professor!
+            Vamos construir juntos um espaço de aprendizado e
+            crescimento contínuo.
+        </p>
+    </div>
 </section>
 {% endblock main %}

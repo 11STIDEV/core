@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block tittle %}Planejamento Semanal{% endblock tittle %}
+
+{% block main %}
+<section class="d-flex flex-column justify-content-center align-items-center mt-5">
+    <form action="{% url 'accounts:planejamento_semanal' %}" method="POST"
+        class="row d-flex justify-content-evenly align-items-center border rounded shadow py-3 mx-2">
+        {% csrf_token %}
+        <div class="col-3">
+            <label for="turmas">Turmas</label>
+            <select name="turmas" class="form-select form-select-lg mb-3" aria-label="Large select example">
+                {% for turma in turmas %}
+                <option value="{{ turma }}">{{ turma }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-3">
+            <label for="disciplinas">Disciplinas</label>
+            <select name="disciplinas" class="form-select form-select-lg mb-3" aria-label="Large select example">
+                {% for disciplina in disciplinas %}
+                <option value="{{ disciplina }}">{{ disciplina }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-3">
+            <label for="taxonomias">Taxonomias</label>
+            <select name="taxonomias" class="form-select form-select-lg mb-3" aria-label="Large select example">
+                {% for taxonomia in taxonomias%}
+                <option value="{{ taxonomia }}">{{ taxonomia }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="row d-flex justify-content-evenly align-items-center mt-3">
+            <div class="col-3">
+                <label for="hora_aula">Hora Aula</label>
+                <select name="hora_aula" class="form-select form-select-lg mb-3" aria-label="Large select example">
+                    <option value="1">01</option>
+                    <option value="2">02</option>
+                    <option value="3">03</option>
+                    <option value="4">04</option>
+                </select>
+            </div>
+            <div class="col-3">
+                <label for="data">Data</label>
+                <input name="data" type="date" class="form-control">
+            </div>
+
+        </div>
+        <div class="row d-flex justify-content-evenly align-items-center mt-3">
+            <div class="col-12">
+                <div class="form-floating">
+                    <textarea name="descricao" class="form-control" placeholder="Leave a comment here"
+                        id="floatingTextarea2" style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Descrição</label>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3" style="width: 250px !important;">Enviar Planejamento</button>
+    </form>
+
+    {% for classroom in context %}
+    <p>{{ classroom }}</p>
+    {% endfor %}
+
+    <h3 class="text-center my-5">Últimos Planejamentos</h1>
+        <!-- Planejamentos recentes -->
+        <div class="container border rounded shadow mb-4">
+
+            {% for registro in registros %}
+            <div class="container row d-flex justify-content-center align-items-center border-bottom py-3">
+                <div class="col-2 d-flex justify-content-end align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-card-list" viewBox="0 0 16 16">
+                        <path
+                            d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z" />
+                        <path
+                            d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8m0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0M4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0" />
+                    </svg>
+                </div>
+                <div class="col-6 d-flex justify-content-center align-items-center">
+                    {{ registro.planejamento_semanal_turma }} | {{ registro.registro_planejamento_semanal_dt }}
+                </div>
+                <div class="col-2 d-flex justify-content-end align-items-center">
+                    <a href="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-box-arrow-in-up-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M6.364 13.5a.5.5 0 0 0 .5.5H13.5a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 13.5 1h-10A1.5 1.5 0 0 0 2 2.5v6.636a.5.5 0 1 0 1 0V2.5a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H6.864a.5.5 0 0 0-.5.5" />
+                            <path fill-rule="evenodd"
+                                d="M11 5.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793l-8.147 8.146a.5.5 0 0 0 .708.708L10 6.707V10.5a.5.5 0 0 0 1 0z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+</section>
+{% endblock main %}

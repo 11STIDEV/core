@@ -6,9 +6,9 @@
 
     <title>Portal CCI{% block tittle %}{% endblock tittle %}</title>
 </head>
-<body>
-
-    <main>
+<body class="bg-light">
+    {% include 'partials/_nav.html' %}
+    <main style="height: 100vh !important;">
         {% block main %}
         {% endblock main %}
     </main>
