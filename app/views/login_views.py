@@ -1,5 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
 
 
-def login_with_google(request, ):
-    return render(request, 'pages/index.html')
+def redirect_user(request, ):
+    if request.user.is_authenticated:
+        return redirect(f'profile/')
+    else:
+        return redirect('accounts/login')

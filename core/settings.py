@@ -104,6 +104,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -119,8 +130,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join('static/')
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join('/static/')
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    "static",
+]
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join('media/')
@@ -129,3 +144,5 @@ MEDIA_ROOT = os.path.join('media/')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = 'accounts:profile'

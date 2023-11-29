@@ -7,7 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
 
-    path('', include('app.urls'), name='login_portal'),
+    path('', include('app.urls'), name='user_profile'),
 ]
 
 urlpatterns += static(
