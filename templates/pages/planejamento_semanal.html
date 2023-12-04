@@ -3,9 +3,10 @@
 {% block tittle %}Planejamento Semanal{% endblock tittle %}
 
 {% block main %}
-<section class="d-flex flex-column justify-content-center align-items-center mt-5">
+<section class="d-flex flex-column justify-content-center align-items-center">
     <form action="{% url 'accounts:planejamento_semanal' %}" method="POST"
-        class="row d-flex justify-content-evenly align-items-center border rounded shadow py-3 mx-2">
+        class="row d-flex justify-content-evenly align-items-center bg-light border rounded shadow py-3 mx-2 mt-5"
+        style="margin-top: 150px !important;">
         {% csrf_token %}
         <div class="col-3">
             <label for="turmas">Turmas</label>
@@ -56,7 +57,7 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary mt-3" style="width: 250px !important;">Enviar Planejamento</button>
+        <button type="submit" class="btn btn-primary rounded-pill mt-3" style="width: 250px !important;">Enviar Planejamento</button>
     </form>
 
     {% for classroom in context %}
@@ -68,7 +69,7 @@
         <div class="container border rounded shadow mb-4">
 
             {% for registro in registros %}
-            <div class="container row d-flex justify-content-center align-items-center border-bottom py-3">
+            <div class="container bg-light row d-flex justify-content-center align-items-center border-bottom py-3">
                 <div class="col-2 d-flex justify-content-end align-items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-card-list" viewBox="0 0 16 16">
