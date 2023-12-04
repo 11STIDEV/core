@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from app.utils import classroom_of_sophia, subjects_of_sophia
 from ..models import TaxonomiaModel, PlanejamentoSemanalModel
 
@@ -42,5 +42,12 @@ def user_planejamento_semanal(request, ):
                     'registros': PlanejamentoSemanalModel.objects.all().order_by('-id')  # noqa: E501
                 }
             )
+    else:
+        return redirect('/')
+
+
+def user_google_classroom(request, ):
+    if request.user.is_authenticated:
+        return render(request, 'pages/google_classroom.html')
     else:
         return redirect('/')

@@ -1,31 +1,36 @@
 /* KeyFrames */
 
 @keyframes slide-fwd-center {
-    0% {
-      transform: translateZ(0);
-    }
-    100% {
-      transform: translateZ(160px);
-    }
+  0% {
+    transform: translateZ(0);
   }
+
+  100% {
+    transform: translateZ(160px);
+  }
+}
 
 /* Animations */
 
 .slide-fwd-center {
-	animation: slide-fwd-center 0.45s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: slide-fwd-center 0.45s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
 
 /* Background Image */
 
 .img-college {
-    background-image: url('./../img/college-students-pana.svg');
+  background-image: url('./../img/college-campus-pana.svg');
 }
 
-.background-imgage{
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    background-size: cover !important;
+.background-imgage {
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+
+.background-gradient {
+  background: linear-gradient(to right bottom, #0d6efd, #7d8efe, #b1b1fe, #dbd7ff, #ffffff) !important;
 }
 
 /* Forms */
