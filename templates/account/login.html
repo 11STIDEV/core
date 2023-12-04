@@ -1,34 +1,23 @@
 {% extends "account/base_entrance.html" %}
-{% load i18n %}
-{% load allauth account socialaccount %}
-{% block head_title %}
-    {% trans "Sign In" %}
-{% endblock head_title %}
+<!-- style="height: 100vh !important;" -->
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign In" %}
-    {% endelement %}
-    <p>
-        {% blocktrans %}If you have not created an account yet, then please
-    <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
-    </p>
-    {% url 'account_login' as login_url %}
-    {% element form form=form method="post" action=login_url tags="entrance,login" %}
-        {% slot body %}
-            {% csrf_token %}
-            {% element fields form=form unlabeled=True %}
-            {% endelement %}
-            {% if redirect_field_value %}
-                <input type="hidden"
-                       name="{{ redirect_field_name }}"
-                       value="{{ redirect_field_value }}" />
-            {% endif %}
-        {% endslot %}
-        {% slot actions %}
-            {% element button type="submit" tags="prominent,login" %}
-                {% trans "Sign In" %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
-    {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+    <div class="container-fluid m-0 p-0 d-flex align-items-center justify-content-center bg-primary" style="height: 100vh !important">
+        <div class="row d-flex align-items-center" style="max-width: 100%;">
+            <div class="col-sm text-center p-0 d-flex align-items-center justify-content-center">
+                <p class="m-0 text-white text-center" style="width: 65%;">O portal do professor foi desenvolvido com o intuito de auxiliar nas tarefas diarias dos profissionais da educação da instituição CCI. Através desse site, vocês professores poderão acessar o classroom, contabilizar a presença em aula dos alunos, lançar diário de aula, visualizar um dashboard com informações da matérias e entre outros.</p>
+            </div>
+            <div class="col-md-auto p-0 d-flex fw-bold" style="height: 350px;">
+                <div class="vr text-white" style="width: 1px;"></div>
+            </div>
+            <div class="col-sm p-0">
+                <div class="rounded-pill" style="border-radius: 50% !important">
+                    {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+                </div>
+                <div>
+                    <h5 class="m-0 text-white">Faça login com a sua conta coorporativa</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 {% endblock content %}
