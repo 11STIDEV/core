@@ -1,48 +1,9 @@
 {% load allauth socialaccount %}
 {% get_providers as socialaccount_providers %}
-{% if socialaccount_providers %}
-    <!-- {% element provider_list %} -->
-        {% for provider in socialaccount_providers %}
-            {% if provider.id == "openid" %}
-                {% for brand in provider.get_brands %}
-                    {% provider_login_url provider openid=brand.openid_url process=process as href %}
-                    {% element provider name=brand.name provider_id=provider.id href=href %}
-                    {% endelement %}
-                {% endfor %}
-            {% endif %}
-            <div class="d-flex align-items-center justify-content-center gap-5" style="list-style: none; text-decoration: none;">
-                {% provider_login_url provider process=process scope=scope auth_params=auth_params as href %}
-                <div class="container-button-google bg-light rounded-pill" style="text-decoration: none;">
-                    {% element provider name=provider.name provider_id=provider.id href=href %}
-                </div>
-            </div>
-            
-            {% endelement %}
-        {% endfor %}
-    <!-- {% endelement %} -->
-{% endif %}
 
-<style>
-
-    .container-button-google {
-        height: 100%;
-        text-align: center;
-
-        display: flex;
-        
-    }
-
-    .container-button-google > a {
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 22px; 
-        padding: 6px;
-        transition: .25s;
-    }
-
-    .container-button-google > a:hover {
-        transition: .25s;
-        padding: 10px;
-    }
     
-</style>
+{% provider_login_url provider process=process scope=scope auth_params=auth_params as href %}
+<div class="container-button-google" style="text-decoration: none;">
+    {% element provider name=provider.name provider_id=provider.id href=href %}
+    {% endelement %}
+</div>

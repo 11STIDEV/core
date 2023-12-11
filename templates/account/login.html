@@ -1,23 +1,36 @@
 {% extends "account/base_entrance.html" %}
 <!-- style="height: 100vh !important;" -->
 {% block content %}
-    <div class="container-fluid m-0 p-0 d-flex align-items-center justify-content-center bg-primary" style="height: 100vh !important">
-        <div class="row d-flex align-items-center" style="max-width: 100%;">
-            <div class="col-sm text-center p-0 d-flex align-items-center justify-content-center">
-                <p class="m-0 text-white text-center" style="width: 65%;">O portal do professor foi desenvolvido com o intuito de auxiliar nas tarefas diarias dos profissionais da educação da instituição CCI. Através desse site, vocês professores poderão acessar o classroom, contabilizar a presença em aula dos alunos, lançar diário de aula, visualizar um dashboard com informações da matérias e entre outros.</p>
-            </div>
-            <div class="col-md-auto p-0 d-flex fw-bold" style="height: 350px;">
-                <div class="vr text-white" style="width: 1px;"></div>
-            </div>
-            <div class="col-sm p-0">
-                <div class="rounded-pill" style="border-radius: 50% !important">
-                    {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+    <div class="container-fluid m-0 p-0 d-flex align-items-center justify-content-center bg-primary" style="height: 100vh !important; max-height: 100vh !important;">
+        <div class=" row d-flex align-items-center flex-row" style="max-width: 100% !important">
+            <div class="teste col-md-3 p-0 d-flex align-items-center justify-content-around flex-column bg-white gap-5" style="height: 100vh !important;"> 
+                <div>
+                    <img class="logo" src="../../static/img/logo_cci.png" alt="">
+                </div>
+                <div class="d-flex align-items-center justify-content-center">
+                    <p class="m-0 text-black text-center" style="width: 80%;">O portal do professor foi desenvolvido com o intuito de auxiliar nas tarefas diarias dos profissionais da educação da instituição CCI.</p>
                 </div>
                 <div>
-                    <h5 class="m-0 text-white">Faça login com a sua conta coorporativa</h5>
+                    {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
                 </div>
+            </div>
+            <div class=" col-sm p-0" style="height: 100vh !important; max-height: 100vh !important;">
+                <img src="../../static/img/teacher-learning.svg" alt="" style="height: 100%; width: 100%;">
             </div>
         </div>
     </div>
-    
+
+    <style>
+        .logo {
+            width: 150px;
+        }
+
+        .teste {
+            -webkit-box-shadow: 0px 0px 45px 0px rgba(46,46,46,1);
+            -moz-box-shadow: 0px 0px 45px 0px rgba(46,46,46,1);
+            box-shadow: 0px 0px 45px 0px rgba(46,46,46,1);
+        }
+    </style>
 {% endblock content %}
+
+
