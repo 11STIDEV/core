@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     'app',
 ]
 
+INSTALLED_APPS += ('django_summernote', )
+
 SITE_ID = 1
 
 MIDDLEWARE = [

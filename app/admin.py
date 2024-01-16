@@ -1,10 +1,11 @@
 from django.contrib import admin
-from .models import *
+from .models import *  # noqa: F403
 
 
-admin.site.register(TaxonomiaModel, )
-admin.site.register(CategoriaTurmaModel, )
-admin.site.register(TurmaModel, )
-admin.site.register(DisciplinaModel, )
-admin.site.register(PlanejamentoSemanalModel, )
-admin.site.register(RegistroPlanejamentoSemanalModel, )
+admin.site.register(Instituicao, )  # noqa: F405
+admin.site.register(Serie, )  # noqa: F405
+admin.site.register(Taxonomia, )  # noqa: F405
+admin.site.register(Disciplina, )  # noqa: F405
+admin.site.register(Turma, )  # noqa: F405
+admin.site.register(PlanejamentoSemanal, )  # noqa: F405
+admin.site.register(RegistroPlanejamentoSemanal, )  # noqa: F405

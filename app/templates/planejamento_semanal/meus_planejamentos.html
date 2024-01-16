@@ -1,69 +1,9 @@
 {% extends 'base.html' %}
 
-{% block tittle %}Planejamento Semanal{% endblock tittle %}
+{% block tittle %}Meus Planejamentos{% endblock tittle %}
 
 {% block main %}
-<section class="d-flex flex-column justify-content-center align-items-center">
-    <form action="{% url 'accounts:planejamento_semanal' %}" method="POST"
-        class="row d-flex justify-content-evenly align-items-center bg-light border rounded shadow py-3 mx-2 mt-5"
-        style="margin-top: 150px !important;">
-        {% csrf_token %}
-        <div class="col-3">
-            <label for="turmas">Turmas</label>
-            <select name="turmas" class="form-select form-select-lg mb-3" aria-label="Large select example">
-                {% for turma in turmas %}
-                <option value="{{ turma }}">{{ turma }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="col-3">
-            <label for="disciplinas">Disciplinas</label>
-            <select name="disciplinas" class="form-select form-select-lg mb-3" aria-label="Large select example">
-                {% for disciplina in disciplinas %}
-                <option value="{{ disciplina }}">{{ disciplina }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="col-3">
-            <label for="taxonomias">Taxonomias</label>
-            <select name="taxonomias" class="form-select form-select-lg mb-3" aria-label="Large select example">
-                {% for taxonomia in taxonomias%}
-                <option value="{{ taxonomia }}">{{ taxonomia }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="row d-flex justify-content-evenly align-items-center mt-3">
-            <div class="col-3">
-                <label for="hora_aula">Hora Aula</label>
-                <select name="hora_aula" class="form-select form-select-lg mb-3" aria-label="Large select example">
-                    <option value="1">01</option>
-                    <option value="2">02</option>
-                    <option value="3">03</option>
-                    <option value="4">04</option>
-                </select>
-            </div>
-            <div class="col-3">
-                <label for="data">Data</label>
-                <input name="data" type="date" class="form-control">
-            </div>
-
-        </div>
-        <div class="row d-flex justify-content-evenly align-items-center mt-3">
-            <div class="col-12">
-                <div class="form-floating">
-                    <textarea name="descricao" class="form-control" placeholder="Leave a comment here"
-                        id="floatingTextarea2" style="height: 100px"></textarea>
-                    <label for="floatingTextarea2">Descrição</label>
-                </div>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary rounded-pill mt-3" style="width: 250px !important;">Enviar Planejamento</button>
-    </form>
-
-    {% for classroom in context %}
-    <p>{{ classroom }}</p>
-    {% endfor %}
-
+<section>
     <h3 class="text-center my-5">Últimos Planejamentos</h1>
         <!-- Planejamentos recentes -->
         <div class="container border rounded shadow mb-4">
@@ -80,7 +20,7 @@
                     </svg>
                 </div>
                 <div class="col-6 d-flex justify-content-center align-items-center">
-                    {{ registro.planejamento_semanal_turma }} | {{ registro.registro_planejamento_semanal_dt }}
+                    {{ registro.planejamento_semanal_turma.turma_nome }} | {{ registro.registro_planejamento_semanal_dt }}
                 </div>
                 <div class="col-2 d-flex justify-content-end align-items-center">
                     <a href="">

@@ -5,7 +5,7 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
 #  CONSTANTES
-PATH_CREDENTIALS = "C:\\Users\\thiago.ferreira\\Desktop\\projetosCCI\\portalProfessor\\portalcci-Professor\\credentials.json"
+PATH_CREDENTIALS = "C:\\Users\\francisco.duo\\Desktop\\portalcciProfessor\\credentials.json"
 SERVICE_ACCOUNT = "francisco.duo@portalcci.com.br"
 SCOPES = [
     "https://www.googleapis.com/auth/admin.directory.user",

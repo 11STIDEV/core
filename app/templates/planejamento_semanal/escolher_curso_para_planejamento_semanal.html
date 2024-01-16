@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block tittle %}Planejamento Semanal{% endblock tittle %}
+
+{% block main %}
+<section class="w-100 h-100 py-4 d-flex flex-column justify-content-center align-items-center">
+    <!-- Formulário -->
+    <form action="{% url 'accounts:escolher_curso_para_planejamento_semanal' request.user.username %}" method="POST" class="w-75 px-2 py-3 d-flex flex-column align-items-center bg-light border border-primary rounded shadow-lg">
+        <!-- Token de segurança do django -->
+        {% csrf_token %}
+
+        <!-- Campos do formulário -->
+
+        <!-- Texto de ajuda -->
+        <div class="w-100 mb-4">
+            <h4>Selecione uma turma</h4>
+            <p>Para continuar com o planejamento é necessário selecionar uma turma e clicar em acessar.</p>
+        </div>
+
+        <!-- Turma -->
+        <div class="col-12 d-flex justify-content-center align-items-center">
+            <div class="form-floating w-50 me-3">
+                <select class="form-select" name="turma" id="floatingSelect" aria-label="Floating label select example">
+                    <option selected></option>
+                    {% for serie in series %}
+                    <option value="{{ serie.id }}">{{ serie.nome_serie }}</option>
+                    {% endfor %}
+                </select>
+                <label for="floatingSelect">Selecione um turma</label>
+            </div>
+
+            <!-- Enviar -->
+            <button class="btn btn-primary" type="submit">Acessar</button>
+        </div>
+    </form>
+
+    <!-- Arte para ocupar espaço -->
+    <div class="container d-flex justify-content-center align-items-center my-4">
+        <img src="../../../static/img/college-students-pana.svg" alt="" class="w-50">
+    </div>
+</section>
+{% endblock main %}
