@@ -21,7 +21,6 @@
         <div class="col-12 d-flex justify-content-center align-items-center">
             <div class="form-floating w-50 me-3">
                 <select class="form-select" name="turma" id="floatingSelect" aria-label="Floating label select example">
-                    <option selected></option>
                     {% for serie in series %}
                     <option value="{{ serie.id }}">{{ serie.nome_serie }}</option>
                     {% endfor %}

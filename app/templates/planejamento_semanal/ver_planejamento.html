@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block tittle %}Planejamento Semanal{% endblock tittle %}
+
+{% block main %}
+<section class="">
+
+    <!-- Formulário -->
+    <form id="teste" action="" method="POST" class="d-flex flex-column justify-content-center align-items-center">
+        <!-- Token de segurança do django -->
+        {% csrf_token %}
+
+
+        <!-- Campos -->
+        <div id="input-test" class="d-flex flex-column justify-content-center align-items-center my-2">
+            <!--  campos -->
+            <div class="d-flex mt-5">
+                <input type="text" class="mx-1 form-control" disabled
+                    value="{{ planejamento.planejamento_semanal_turma }}">
+                <input type="text" class="mx-1 form-control" disabled
+                    value="{{ planejamento.planejamento_semanal_disciplina }}">
+                <input type="text" class="mx-1 form-control" disabled
+                    value="{{ planejamento.planejamento_semanal_taxonomia }}">
+                <input type="text" class="mx-1 form-control" disabled
+                    value="{{ planejamento.planejamento_semanal_hora_aula }}">
+                <input type="date" class="mx-1 form-control" disabled
+                    value="{{ planejamento.planejamento_semanal_dt_inicio }}">
+                <input type="date" class="mx-1 form-control" disabled
+                    value="{{ planejamento.planejamento_semanal_dt_final }}">
+            </div>
+            <div class="w-100 mt-3 form-floating">
+                <textarea class="form-control"
+                    placeholder="Leave a comment here" id="floatingTextarea">
+                {{ planejamento.planejamento_semanal_descricao | safe }}
+                </textarea>
+                <label for="floatingTextarea">Descrição</label>
+            </div>
+
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+
+</section>
+{% endblock main %}

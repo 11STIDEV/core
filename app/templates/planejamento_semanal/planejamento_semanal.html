@@ -31,16 +31,21 @@
 
     function addField() {
         // Campos a serem clonados
-        
         let newTurmas = document.createElement('select');
         let newDisciplinas = document.createElement('select');
         let newTaxonomias = document.createElement('select');
+        let horaAula = document.createElement('input')
         let newDataInicial = document.createElement('input');
         let newDataFinal = document.createElement('input');
         let newTextArea = document.createElement('textarea');
         let newBotaoOnclick = document.createElement('i');
         let newDiv = document.createElement('div')
+        let contentBotaoOnClick = document.createElement('div');
+        let turma = {{turmas|safe}};
+        let disciplina = {{disciplinas|safe}}
+        let taxonomia = {{taxonomias|safe}}
 
+        newTextArea.name = 'descricao' + fieldCounter;
         newTextArea.classList.add('form-control');
         newTextArea.classList.add('mb-3');
         newTextArea.classList.add('border');
@@ -52,7 +57,7 @@
         newDiv.classList.add('mb-3');
 
         newTurmas.type = 'select';
-        newTurmas.name = 'tumas' + fieldCounter;
+        newTurmas.name = 'turmas' + fieldCounter;
         newTurmas.classList.add('form-select');
         newTurmas.classList.add('mx-2');
 
@@ -65,6 +70,11 @@
         newTaxonomias.name = 'taxonomias' + fieldCounter;
         newTaxonomias.classList.add('form-select');
         newTaxonomias.classList.add('mx-2');
+    
+        horaAula.type = 'input';
+        horaAula.name = 'hora_aula' + fieldCounter;
+        horaAula.classList.add('form-control');
+        horaAula.classList.add('mx-2');
 
         newDataInicial.type = 'date';
         newDataInicial.name = 'date_i' + fieldCounter;
@@ -75,8 +85,6 @@
         newDataFinal.name = 'date_f' + fieldCounter;
         newDataFinal.classList.add('form-control');
         newDataFinal.classList.add('mx-2');
-
-        let contentBotaoOnClick = document.createElement('div');
 
         contentBotaoOnClick.classList.add('d-flex');
         contentBotaoOnClick.classList.add('justify-content-center');
@@ -91,11 +99,6 @@
 
         newBotaoOnclick.onclick = addField;
 
-        let turma = {{turmas|safe}};
-        // let taxonomia = {{ taxonomias|safe }};
-        // let disciplina = {{ disciplinas|safe }};
-
-
         for (let optionText of turma) {
             let option = document.createElement('option');
             option.value = optionText;
@@ -103,16 +106,31 @@
             newTurmas.appendChild(option);
         }
 
+        for (let optionText of disciplina) {
+            let option = document.createElement('option');
+            option.value = optionText;
+            option.text = optionText;
+            newDisciplinas.appendChild(option);
+        }
+
+        for (let optionText of taxonomia) {
+            let option = document.createElement('option');
+            option.value = optionText;
+            option.text = optionText;
+            newTaxonomias.appendChild(option);
+        }
+
         if (fieldCounter <= 5) {
             document.getElementById('input-test').appendChild(newDiv).appendChild(newTurmas);
             document.getElementById('input-test').appendChild(newDiv).appendChild(newDisciplinas);
             document.getElementById('input-test').appendChild(newDiv).appendChild(newTaxonomias);
+            document.getElementById('input-test').appendChild(newDiv).appendChild(horaAula);
             document.getElementById('input-test').appendChild(newDiv).appendChild(newDataInicial);
             document.getElementById('input-test').appendChild(newDiv).appendChild(newDataFinal);
             document.getElementById('input-test').appendChild(newTextArea);
         } else {
             let newBotaoOnclick = document.createElement('span');
-            newBotaoOnclick.textContent = 'Limite de cinco planejamentos por vez...';
+            newBotaoOnclick.textContent = 'Limite de registros simultâneos atingido...';
             newBotaoOnclick.style.color = 'red';
             setTimeout(
                 function () {
@@ -122,7 +140,7 @@
 
             document.getElementById('input-test').appendChild(newDiv).appendChild(newBotaoOnclick);
         }
-        console.log('{{ turmas }}')
+
         fieldCounter++;
     }
 

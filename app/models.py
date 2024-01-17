@@ -113,11 +113,12 @@ class PlanejamentoSemanal(models.Model):
         - registro_planejamento_semanal_dt --> DateField()
     """
     planejamento_semanal_criador = models.EmailField(blank=True, verbose_name='Email')  # noqa:E501
-    planejamento_semanal_turma = models.ManyToManyField(Turma, verbose_name='Turma')  # noqa:E501
-    planejamento_semanal_disciplina = models.ManyToManyField(Disciplina, verbose_name='Disciplina')  # noqa:E501
-    planejamento_semanal_taxonomia = models.ManyToManyField(Taxonomia, verbose_name='Taxonomia')  # noqa:E501
+    planejamento_semanal_turma = models.CharField(max_length=255, blank=True, verbose_name='Turma')  # noqa:E501
+    planejamento_semanal_disciplina = models.CharField(max_length=255, blank=True, verbose_name='Disciplina')  # noqa:E501
+    planejamento_semanal_taxonomia = models.CharField(max_length=255, blank=True, verbose_name='Taxonomia')  # noqa:E501
     planejamento_semanal_hora_aula = models.CharField(max_length=255, blank=True, verbose_name='Hora Aula')  # noqa: E501
     planejamento_semanal_dt_inicio = models.DateTimeField(blank=True, verbose_name='Data')  # noqa:E501
+    planejamento_semanal_dt_final = models.DateTimeField(blank=True, verbose_name='Data', null=True)  # noqa:E501
     planejamento_semanal_descricao = models.TextField(blank=True, verbose_name='Descrição')  # noqa:E501
     registro_planejamento_semanal_dt = models.DateField(default=timezone.now, blank=True, verbose_name='Data de Registro')  # noqa:E501
 
