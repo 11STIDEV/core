@@ -122,6 +122,9 @@ class PlanejamentoSemanal(models.Model):
     planejamento_semanal_descricao = models.TextField(blank=True, verbose_name='Descrição')  # noqa:E501
     registro_planejamento_semanal_dt = models.DateField(default=timezone.now, blank=True, verbose_name='Data de Registro')  # noqa:E501
 
+    def __str__(self) -> str:
+        return self.planejamento_semanal_dt_final.strftime('%y-%m-%d'), self.planejamento_semanal_dt_inicio.strftime('%y-%m-%d')  # noqa: E501
+
 
 class RegistroPlanejamentoSemanal(models.Model):
     """

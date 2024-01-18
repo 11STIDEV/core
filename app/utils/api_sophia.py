@@ -44,5 +44,5 @@ def teste():
 if __name__ == '__main__':
     teste_1 = recurso_disciplina()
     teste_2 = teste()
-    for i in teste_2:
-        print(i)
+    for i in teste_1:
+        print(i['nome'])

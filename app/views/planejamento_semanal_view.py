@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render
+from django.core.paginator import Paginator
 from app.models import Serie, PlanejamentoSemanal, Turma, Taxonomia, Disciplina  # noqa: F403 E501
 
 
@@ -41,9 +42,9 @@ def planejamento_semanal(request, username, turma):
                     planejamento_semanal_criador=request.user.email,
                     planejamento_semanal_turma=request.POST.get('turmas1', ''),
                     planejamento_semanal_disciplina=request.POST.get(
-                        'disciplina1', ''),
+                        'disciplinas1', ''),
                     planejamento_semanal_taxonomia=request.POST.get(
-                        'taxonomia1', ''),
+                        'taxonomias1', ''),
                     planejamento_semanal_hora_aula=request.POST.get(
                         'hora_aula1', ''),
                     planejamento_semanal_dt_inicio=request.POST.get(
@@ -58,9 +59,9 @@ def planejamento_semanal(request, username, turma):
                     planejamento_semanal_criador=request.user.email,
                     planejamento_semanal_turma=request.POST.get('turmas2', ''),
                     planejamento_semanal_disciplina=request.POST.get(
-                        'disciplina2', ''),
+                        'disciplinas2', ''),
                     planejamento_semanal_taxonomia=request.POST.get(
-                        'taxonomia2', ''),
+                        'taxonomias2', ''),
                     planejamento_semanal_hora_aula=request.POST.get(
                         'hora_aula2', ''),
                     planejamento_semanal_dt_inicio=request.POST.get(
@@ -75,9 +76,9 @@ def planejamento_semanal(request, username, turma):
                     planejamento_semanal_criador=request.user.email,
                     planejamento_semanal_turma=request.POST.get('turmas3', ''),
                     planejamento_semanal_disciplina=request.POST.get(
-                        'disciplina3', ''),
+                        'disciplinas3', ''),
                     planejamento_semanal_taxonomia=request.POST.get(
-                        'taxonomia3', ''),
+                        'taxonomias3', ''),
                     planejamento_semanal_hora_aula=request.POST.get(
                         'hora_aula3', ''),
                     planejamento_semanal_dt_inicio=request.POST.get(
@@ -92,9 +93,9 @@ def planejamento_semanal(request, username, turma):
                     planejamento_semanal_criador=request.user.email,
                     planejamento_semanal_turma=request.POST.get('turmas4', ''),
                     planejamento_semanal_disciplina=request.POST.get(
-                        'disciplina4', ''),
+                        'disciplinas4', ''),
                     planejamento_semanal_taxonomia=request.POST.get(
-                        'taxonomia4', ''),
+                        'taxonomias4', ''),
                     planejamento_semanal_hora_aula=request.POST.get(
                         'hora_aula4', ''),
                     planejamento_semanal_dt_inicio=request.POST.get(
@@ -109,9 +110,9 @@ def planejamento_semanal(request, username, turma):
                     planejamento_semanal_criador=request.user.email,
                     planejamento_semanal_turma=request.POST.get('turmas5', ''),
                     planejamento_semanal_disciplina=request.POST.get(
-                        'disciplina5', ''),
+                        'disciplinas5', ''),
                     planejamento_semanal_taxonomia=request.POST.get(
-                        'taxonomia5', ''),
+                        'taxonomias5', ''),
                     planejamento_semanal_hora_aula=request.POST.get(
                         'hora_aula5', ''),
                     planejamento_semanal_dt_inicio=request.POST.get(
@@ -123,7 +124,8 @@ def planejamento_semanal(request, username, turma):
                 )
 
             return redirect(
-                'accounts:escolher_curso_para_planejamento_semanal', request.user.username
+                'accounts:escolher_curso_para_planejamento_semanal',
+                request.user.username
             )
         else:
 
@@ -141,12 +143,16 @@ def meus_planejamentos(request, username):
     if request.user.is_authenticated:
         # Se o usuário estiver corretamente autenticado
         # retorna o template que contém os planejamentos
-        # que contém seu email como criador
+        # que contém seu email como criador.
+        planejamento = PlanejamentoSemanal.objects.all().order_by('-id')
+        paginator = Paginator(planejamento, 5)
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
         return render(
             request,
             'planejamento_semanal/meus_planejamentos.html',
             {
-                'registros': PlanejamentoSemanal.objects.all()
+                'page_obj': page_obj
             }
         )
     else:
@@ -155,4 +161,18 @@ def meus_planejamentos(request, username):
 
 def ver_planejamento(request, username, id_planejamento):
     planejamento = PlanejamentoSemanal.objects.get(id=id_planejamento)
-    return render(request, 'planejamento_semanal/ver_planejamento.html', {'planejamento': planejamento})
+
+    if request.method == 'POST':
+        PlanejamentoSemanal.objects.update(
+            planejamento_semanal_hora_aula=request.POST.get(
+                'hora_aula', ''),
+            planejamento_semanal_dt_inicio=request.POST.get(
+                'date_i', ''),
+            planejamento_semanal_dt_final=request.POST.get(
+                'date_f', ''),
+            planejamento_semanal_descricao=request.POST.get(
+                'descricao')
+        )
+        return redirect('accounts:meus_planejamentos', request.user.username)
+    return render(request, 'planejamento_semanal/ver_planejamento.html',
+                  {'planejamento': planejamento})
