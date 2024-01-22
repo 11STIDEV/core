@@ -5,6 +5,7 @@ app_name = 'accounts'
 
 urlpatterns = [
     path('', views.redirect_user, name='home'),
+    path('teste', views.armazenar_turmas_db, name='teste'),
     path('inicio/', views.pagina_inicial, name='profile'),  # noqa: E501
     path('inicio/<str:username>/escolher_curso_para_o_planejamento_semanal/', views.escolher_curso_para_planejamento_semanal, name='escolher_curso_para_planejamento_semanal'),  # noqa: E501
     path('inicio/<str:username>/planejamento_semanal/<int:turma>', views.planejamento_semanal, name='planejamento_semanal'),  # noqa: E501

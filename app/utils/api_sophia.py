@@ -1,4 +1,5 @@
 import requests
+from app.models import Serie, PlanejamentoSemanal
 
 # Usuário para autenticação na api do sophia
 ACESSO_SOPHIA = {"usuario": "setape", "senha": "setape"}
@@ -41,8 +42,39 @@ def teste():
     return requests.get(GET_CLASSROOM, headers=conecta_com_sophia()).json()
 
 
-if __name__ == '__main__':
-    teste_1 = recurso_disciplina()
+def turmas_disciplinas():
+    obj_turmas = []
     teste_2 = teste()
-    for i in teste_1:
-        print(i['nome'])
+
+    for i in teste_2:
+        if 'Téc' in i['nome']:
+            turma = ('Ensino Técnico')
+        elif 'EM' in i['nome'] or '9º' in i['nome']:
+            if 'Programa' in i['nome'] or 'Preparatório' in i['nome']:
+                pass
+            else:
+                turma = ('Ensino Médio')
+        elif 'Jardim' in i['nome'] or 'Maternal' in i['nome']:
+            turma = ('Ensino Infantil')
+        elif 'º' in i['nome']:
+            if 'PEC' in i['nome']:
+                ...
+            else:
+                turma = ('Ensino Fundamental')
+        else:
+            if 'ADS' in i['nome'] or 'PSI' in i['nome'] or 'DIR' in i['nome'] or 'PED' in i['nome'] or 'ENF' in i['nome']:
+                turma = ('Ensino Superior')
+        if i['periodoLetivo']['descricao'] in ['.Ano 2024', '.Sem2024.1']:
+            for c in i['professoresDisciplinas']:
+                obj_turmas.append(
+                    {'turma': turma, 'nome': i['nome'],
+                     'disciplina': c['disciplina']['nome']}
+                )
+    return obj_turmas
+
+
+if __name__ == '__main__':
+    teste = PlanejamentoSemanal.objects.all()
+    
+    for i in teste:
+        print(i)

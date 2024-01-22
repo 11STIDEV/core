@@ -54,7 +54,7 @@ class Turma(models.Model):
         verbose_name = 'Turma'
         verbose_name_plural = 'Turmas'
 
-    nome_turma = models.CharField(max_length=100, blank=False, verbose_name='Turma')  # noqa: E501
+    nome_turma = models.CharField(max_length=100, blank=False, verbose_name='Turma', unique=True)  # noqa: E501
     serie = models.ForeignKey(Serie, on_delete=models.CASCADE, verbose_name='Série', blank=True, null=True)  # noqa:E501
 
     def __str__(self, ) -> str:

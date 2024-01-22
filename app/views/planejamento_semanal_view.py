@@ -36,92 +36,95 @@ def planejamento_semanal(request, username, turma):
         taxonomia = [tx.nome_taxonomia for tx in Taxonomia.objects.all()]
 
         if request.method == 'POST':
-            print(request.POST.get('turmas1', ''))
-            if request.POST.get('turmas1'):
-                PlanejamentoSemanal.objects.create(
-                    planejamento_semanal_criador=request.user.email,
-                    planejamento_semanal_turma=request.POST.get('turmas1', ''),
-                    planejamento_semanal_disciplina=request.POST.get(
-                        'disciplinas1', ''),
-                    planejamento_semanal_taxonomia=request.POST.get(
-                        'taxonomias1', ''),
-                    planejamento_semanal_hora_aula=request.POST.get(
-                        'hora_aula1', ''),
-                    planejamento_semanal_dt_inicio=request.POST.get(
-                        'date_i1', ''),
-                    planejamento_semanal_dt_final=request.POST.get(
-                        'date_f1', ''),
-                    planejamento_semanal_descricao=request.POST.get(
-                        'descricao1')
-                )
-            elif request.POST.get('turmas2', ''):
-                PlanejamentoSemanal.objects.create(
-                    planejamento_semanal_criador=request.user.email,
-                    planejamento_semanal_turma=request.POST.get('turmas2', ''),
-                    planejamento_semanal_disciplina=request.POST.get(
-                        'disciplinas2', ''),
-                    planejamento_semanal_taxonomia=request.POST.get(
-                        'taxonomias2', ''),
-                    planejamento_semanal_hora_aula=request.POST.get(
-                        'hora_aula2', ''),
-                    planejamento_semanal_dt_inicio=request.POST.get(
-                        'date_i2', ''),
-                    planejamento_semanal_dt_final=request.POST.get(
-                        'date_f2', ''),
-                    planejamento_semanal_descricao=request.POST.get(
-                        'descricao2')
-                )
-            elif request.POST.get('turmas3', ''):
-                PlanejamentoSemanal.objects.create(
-                    planejamento_semanal_criador=request.user.email,
-                    planejamento_semanal_turma=request.POST.get('turmas3', ''),
-                    planejamento_semanal_disciplina=request.POST.get(
-                        'disciplinas3', ''),
-                    planejamento_semanal_taxonomia=request.POST.get(
-                        'taxonomias3', ''),
-                    planejamento_semanal_hora_aula=request.POST.get(
-                        'hora_aula3', ''),
-                    planejamento_semanal_dt_inicio=request.POST.get(
-                        'date_i3', ''),
-                    planejamento_semanal_dt_final=request.POST.get(
-                        'date_f3', ''),
-                    planejamento_semanal_descricao=request.POST.get(
-                        'descricao3')
-                )
-            elif request.POST.get('turmas4', ''):
-                PlanejamentoSemanal.objects.create(
-                    planejamento_semanal_criador=request.user.email,
-                    planejamento_semanal_turma=request.POST.get('turmas4', ''),
-                    planejamento_semanal_disciplina=request.POST.get(
-                        'disciplinas4', ''),
-                    planejamento_semanal_taxonomia=request.POST.get(
-                        'taxonomias4', ''),
-                    planejamento_semanal_hora_aula=request.POST.get(
-                        'hora_aula4', ''),
-                    planejamento_semanal_dt_inicio=request.POST.get(
-                        'date_i4', ''),
-                    planejamento_semanal_dt_final=request.POST.get(
-                        'date_f4', ''),
-                    planejamento_semanal_descricao=request.POST.get(
-                        'descricao4')
-                )
-            elif request.POST.get('turmas5', ''):
-                PlanejamentoSemanal.objects.create(
-                    planejamento_semanal_criador=request.user.email,
-                    planejamento_semanal_turma=request.POST.get('turmas5', ''),
-                    planejamento_semanal_disciplina=request.POST.get(
-                        'disciplinas5', ''),
-                    planejamento_semanal_taxonomia=request.POST.get(
-                        'taxonomias5', ''),
-                    planejamento_semanal_hora_aula=request.POST.get(
-                        'hora_aula5', ''),
-                    planejamento_semanal_dt_inicio=request.POST.get(
-                        'date_i5', ''),
-                    planejamento_semanal_dt_final=request.POST.get(
-                        'date_f5', ''),
-                    planejamento_semanal_descricao=request.POST.get(
-                        'descricao5')
-                )
+            try:
+                if request.POST.get('turmas1'):
+                    PlanejamentoSemanal.objects.create(
+                        planejamento_semanal_criador=request.user.email,
+                        planejamento_semanal_turma=request.POST.get('turmas1', ''),
+                        planejamento_semanal_disciplina=request.POST.get(
+                            'disciplinas1', ''),
+                        planejamento_semanal_taxonomia=request.POST.get(
+                            'taxonomias1', ''),
+                        planejamento_semanal_hora_aula=request.POST.get(
+                            'hora_aula1', ''),
+                        planejamento_semanal_dt_inicio=request.POST.get(
+                            'date_i1', ''),
+                        planejamento_semanal_dt_final=request.POST.get(
+                            'date_f1', ''),
+                        planejamento_semanal_descricao=request.POST.get(
+                            'descricao1')
+                    )
+                if request.POST.get('turmas2', ''):
+                    PlanejamentoSemanal.objects.create(
+                        planejamento_semanal_criador=request.user.email,
+                        planejamento_semanal_turma=request.POST.get('turmas2', ''),
+                        planejamento_semanal_disciplina=request.POST.get(
+                            'disciplinas2', ''),
+                        planejamento_semanal_taxonomia=request.POST.get(
+                            'taxonomias2', ''),
+                        planejamento_semanal_hora_aula=request.POST.get(
+                            'hora_aula2', ''),
+                        planejamento_semanal_dt_inicio=request.POST.get(
+                            'date_i2', ''),
+                        planejamento_semanal_dt_final=request.POST.get(
+                            'date_f2', ''),
+                        planejamento_semanal_descricao=request.POST.get(
+                            'descricao2')
+                    )
+                if request.POST.get('turmas3', ''):
+                    PlanejamentoSemanal.objects.create(
+                        planejamento_semanal_criador=request.user.email,
+                        planejamento_semanal_turma=request.POST.get('turmas3', ''),
+                        planejamento_semanal_disciplina=request.POST.get(
+                            'disciplinas3', ''),
+                        planejamento_semanal_taxonomia=request.POST.get(
+                            'taxonomias3', ''),
+                        planejamento_semanal_hora_aula=request.POST.get(
+                            'hora_aula3', ''),
+                        planejamento_semanal_dt_inicio=request.POST.get(
+                            'date_i3', ''),
+                        planejamento_semanal_dt_final=request.POST.get(
+                            'date_f3', ''),
+                        planejamento_semanal_descricao=request.POST.get(
+                            'descricao3')
+                    )
+                if request.POST.get('turmas4', ''):
+                    PlanejamentoSemanal.objects.create(
+                        planejamento_semanal_criador=request.user.email,
+                        planejamento_semanal_turma=request.POST.get('turmas4', ''),
+                        planejamento_semanal_disciplina=request.POST.get(
+                            'disciplinas4', ''),
+                        planejamento_semanal_taxonomia=request.POST.get(
+                            'taxonomias4', ''),
+                        planejamento_semanal_hora_aula=request.POST.get(
+                            'hora_aula4', ''),
+                        planejamento_semanal_dt_inicio=request.POST.get(
+                            'date_i4', ''),
+                        planejamento_semanal_dt_final=request.POST.get(
+                            'date_f4', ''),
+                        planejamento_semanal_descricao=request.POST.get(
+                            'descricao4')
+                    )
+                if request.POST.get('turmas5', ''):
+                    PlanejamentoSemanal.objects.create(
+                        planejamento_semanal_criador=request.user.email,
+                        planejamento_semanal_turma=request.POST.get('turmas5', ''),
+                        planejamento_semanal_disciplina=request.POST.get(
+                            'disciplinas5', ''),
+                        planejamento_semanal_taxonomia=request.POST.get(
+                            'taxonomias5', ''),
+                        planejamento_semanal_hora_aula=request.POST.get(
+                            'hora_aula5', ''),
+                        planejamento_semanal_dt_inicio=request.POST.get(
+                            'date_i5', ''),
+                        planejamento_semanal_dt_final=request.POST.get(
+                            'date_f5', ''),
+                        planejamento_semanal_descricao=request.POST.get(
+                            'descricao5')
+                    )
+            except Exception as err:
+                pass
+            
 
             return redirect(
                 'accounts:escolher_curso_para_planejamento_semanal',
