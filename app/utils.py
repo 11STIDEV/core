@@ -4,6 +4,8 @@ import requests
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
+from models import PlanejamentoSemanal
+
 #  CONSTANTES
 PATH_CREDENTIALS = "C:\\Users\\francisco.duo\\Desktop\\portalcciProfessor\\credentials.json"
 SERVICE_ACCOUNT = "francisco.duo@portalcci.com.br"
@@ -85,6 +87,9 @@ def subjects_of_sophia() -> requests:
     ).json()
 
 
-# teste = classroom_of_sophia()
-# for t in teste:
-#     print(t['nome'])
+if __name__ == '__main__':
+    turmas = classroom_of_sophia()
+    for i in turmas:
+        for c in i['professoresDisciplinas']:
+            if c['colaboradores'] != []:
+                print(i['nome'], c['disciplina'])

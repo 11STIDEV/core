@@ -24,7 +24,8 @@
                         <a class="nav-link active" href="{% url 'accounts:meus_planejamentos' request.user.username %}">Meus Planejamentos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="">Dashboard</a>
+                        <a class="nav-link active" href="{% url 'accounts:dashboard' request.user.username %}">
+                            Dashboard</a>
                     </li><br>
                     <li class="nav-item">
                         <a class="nav-link active" href="{% url 'account_logout' %}">Sair</a>

@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.core.paginator import Paginator
 from app.models import Serie, PlanejamentoSemanal, Turma, Taxonomia, Disciplina  # noqa: F403 E501
-
+from app.forms import PlanejamentoSemanalForm
 
 # O usuário deve escolher qual série ele deseja iniciar um planjemaneto.
 # Ao selecionar o usuário é redirecionado para a página do formulário
@@ -40,7 +40,8 @@ def planejamento_semanal(request, username, turma):
                 if request.POST.get('turmas1'):
                     PlanejamentoSemanal.objects.create(
                         planejamento_semanal_criador=request.user.email,
-                        planejamento_semanal_turma=request.POST.get('turmas1', ''),
+                        planejamento_semanal_turma=request.POST.get(
+                            'turmas1', ''),
                         planejamento_semanal_disciplina=request.POST.get(
                             'disciplinas1', ''),
                         planejamento_semanal_taxonomia=request.POST.get(
@@ -57,7 +58,8 @@ def planejamento_semanal(request, username, turma):
                 if request.POST.get('turmas2', ''):
                     PlanejamentoSemanal.objects.create(
                         planejamento_semanal_criador=request.user.email,
-                        planejamento_semanal_turma=request.POST.get('turmas2', ''),
+                        planejamento_semanal_turma=request.POST.get(
+                            'turmas2', ''),
                         planejamento_semanal_disciplina=request.POST.get(
                             'disciplinas2', ''),
                         planejamento_semanal_taxonomia=request.POST.get(
@@ -74,7 +76,8 @@ def planejamento_semanal(request, username, turma):
                 if request.POST.get('turmas3', ''):
                     PlanejamentoSemanal.objects.create(
                         planejamento_semanal_criador=request.user.email,
-                        planejamento_semanal_turma=request.POST.get('turmas3', ''),
+                        planejamento_semanal_turma=request.POST.get(
+                            'turmas3', ''),
                         planejamento_semanal_disciplina=request.POST.get(
                             'disciplinas3', ''),
                         planejamento_semanal_taxonomia=request.POST.get(
@@ -91,7 +94,8 @@ def planejamento_semanal(request, username, turma):
                 if request.POST.get('turmas4', ''):
                     PlanejamentoSemanal.objects.create(
                         planejamento_semanal_criador=request.user.email,
-                        planejamento_semanal_turma=request.POST.get('turmas4', ''),
+                        planejamento_semanal_turma=request.POST.get(
+                            'turmas4', ''),
                         planejamento_semanal_disciplina=request.POST.get(
                             'disciplinas4', ''),
                         planejamento_semanal_taxonomia=request.POST.get(
@@ -108,7 +112,8 @@ def planejamento_semanal(request, username, turma):
                 if request.POST.get('turmas5', ''):
                     PlanejamentoSemanal.objects.create(
                         planejamento_semanal_criador=request.user.email,
-                        planejamento_semanal_turma=request.POST.get('turmas5', ''),
+                        planejamento_semanal_turma=request.POST.get(
+                            'turmas5', ''),
                         planejamento_semanal_disciplina=request.POST.get(
                             'disciplinas5', ''),
                         planejamento_semanal_taxonomia=request.POST.get(
@@ -124,7 +129,6 @@ def planejamento_semanal(request, username, turma):
                     )
             except Exception as err:
                 pass
-            
 
             return redirect(
                 'accounts:escolher_curso_para_planejamento_semanal',
@@ -138,6 +142,16 @@ def planejamento_semanal(request, username, turma):
                 {'turmas': turmas, 'disciplinas': disciplinas,
                     'taxonomias': taxonomia}
             )
+    else:
+        return redirect('accounts:home')
+
+
+def planjemanto_teste(request, username, turma):
+    import json
+
+    if request.user.is_authenticated:
+        with open('turmas.json', 'r') as arqv:
+            arqv_json = json
     else:
         return redirect('accounts:home')
 

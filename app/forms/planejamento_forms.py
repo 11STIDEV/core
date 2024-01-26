@@ -1,68 +1,32 @@
 from django import forms
-from django_summernote.widgets import SummernoteWidget
-
-from app.models import PlanejamentoSemanalModel
+from app.models import PlanejamentoSemanal
 
 
 class PlanejamentoSemanalForm(forms.ModelForm):
-    """
-    planejamento_semanal_criador = models.EmailField(blank=True)
-    planejamento_semanal_turma = models.CharField(max_length=255, blank=True)  # noqa:E501
-    planejamento_semanal_disciplina = models.CharField(max_length=255, blank=True)  # noqa:E501
-    planejamento_semanal_taxonomia = models.CharField(max_length=255, blank=True)  # noqa:E501
-    planejamento_semanal_hora_aula = models.CharField(max_length=255, blank=True)
-    planejamento_semanal_dt_inicio = models.DateField(blank=True)
-    planejamento_semanal_descricao = models.TextField(blank=True)
-    registro_planejamento_semanal_dt = models.DateField(default=timezone.now, blank=True)
-    """
-    planejamento_semanal_descricao = forms.CharField(
-        widget=SummernoteWidget()
-    )
 
     class Meta:
-        model = PlanejamentoSemanalModel
-        fields = (
+        model = PlanejamentoSemanal
+        fields = '__all__'
+        exclude = (
             'planejamento_semanal_criador',
-            'planejamento_semanal_turma',
-            'planejamento_semanal_disciplina',
-            'planejamento_semanal_taxonomia',
-            'planejamento_semanal_hora_aula',
-            'planejamento_semanal_dt_inicio',
-            'planejamento_semanal_descricao'
+            'registro_planejamento_semanal_dt'
         )
         widgets = {
-            'planejamento_semanal_turma': forms.SelectMultiple(
-                attrs={
-                    'class': 'form-select',
-                    'aria-label': 'multiple select example'
-                }
-            ),
-            'planejamento_semanal_disciplina': forms.SelectMultiple(
-                attrs={
-                    'class': 'form-select',
-                    'aria-label': 'multiple select example'
-                }
-            ),
-            'planejamento_semanal_taxonomia': forms.SelectMultiple(
-                attrs={
-                    'class': 'form-select',
-                    'aria-label': 'multiple select example'
-                }
-            ),
-            'planejamento_semanal_hora_aula': forms.NumberInput(
-                attrs={
-                    'class': 'form-control',
-                }
-            ),
             'planejamento_semanal_dt_inicio': forms.DateInput(
                 attrs={
-                    'class': 'form-control',
                     'type': 'date',
-                }
+                },
             ),
-            'planejamento_semanal_criador': forms.EmailInput(
+            'planejamento_semanal_dt_final': forms.DateInput(
                 attrs={
-                    'class': 'form-control',
-                }
+                    'type': 'date',
+                },
             ),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for field_name, field in self.fields.items():
+            print(field.widget)
+            field.widget.attrs['class'] = 'form-control mb-3'
