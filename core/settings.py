@@ -13,7 +13,11 @@ SECRET_KEY = get_random_secret_key()
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['*',]
+ALLOWED_HOSTS = [
+    '18.231.117.87',
+    'http://18.231.117.87',
+    'http://professor.portalcci.com.br',
+]
 
 # Apps
 INSTALLED_APPS = [
