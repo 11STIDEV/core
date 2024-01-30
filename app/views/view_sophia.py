@@ -1,4 +1,6 @@
 import requests
+import json
+
 from django.http import JsonResponse
 from app.models import Turma, Serie, Disciplina
 
@@ -13,6 +15,7 @@ GET_STUDENT = "https://portal.sophia.com.br/SophiAWebAPI/3055/api/v1/Alunos/"
 PUT_STUDENTS = "https://portal.sophia.com.br/SophiAWebAPI/3055/api/v1/Alunos/"
 GET_CLASSROOM = "https://portal.sophia.com.br/SophiAWebAPI/3055/api/v1/Turmas"
 GET_DISCIPLINA = "https://portal.sophia.com.br/SophiAWebAPI/3055/api/v1/Disciplinas"  # noqa: E501
+GET_COLABORADOR = "https://portal.sophia.com.br/SophiAWebAPI/3055/api/v1/Colaboradores"  # noqa: E501
 
 
 # Conectando com a api do sophia
@@ -41,7 +44,6 @@ def http_response_turmas(request, ):
             loop:
                 -->
     """
-    import json
 
     response = []
 
@@ -61,6 +63,24 @@ def http_response_turmas(request, ):
             )
 
     with open(r'turmas.json', 'w') as arqv:
+        json.dump(response, arqv)
+
+    return JsonResponse(response, safe=False)
+
+
+def http_response_usuarios(request, ):
+    response = []
+
+    for usuario in requests.get(GET_COLABORADOR, headers=connect_sophia()).json():  # noqa: E501
+        response.append(
+            {
+                'colaborador_codigo': usuario['codigo'],
+                'colaborador_nome': usuario['nome'],
+                'colaborador_email': usuario['email'],
+            }
+        )
+
+    with open(r'usuarios.json', 'w') as arqv:
         json.dump(response, arqv)
 
     return JsonResponse(response, safe=False)

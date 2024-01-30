@@ -9,7 +9,9 @@ class PlanejamentoSemanalForm(forms.ModelForm):
         fields = '__all__'
         exclude = (
             'planejamento_semanal_criador',
-            'registro_planejamento_semanal_dt'
+            'registro_planejamento_semanal_dt',
+            'planejamento_semanal_enviado',
+            'planejamento_semanal_cod_classroom'
         )
         widgets = {
             'planejamento_semanal_dt_inicio': forms.DateInput(

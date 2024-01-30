@@ -24,9 +24,9 @@
                 <input name="hora_aula" type="text" class="mx-1 form-control"
                     value="{{ planejamento.planejamento_semanal_hora_aula }}">
                 <input name="date_i" type="date" class="mx-1 form-control"
-                    value="{{ planejamento.planejamento_semanal_dt_inicio }}">
+                    value="{{ planejamento.planejamento_semanal_dt_inicio|date:'Y-m-d' }}">
                 <input name="date_f" type="date" class="mx-1 form-control"
-                    value="{{ planejamento.planejamento_semanal_dt_final }}">
+                    value="{{ planejamento.planejamento_semanal_dt_final |date:'Y-m-d' }}">
             </div>
             <div class="w-100 mt-3 form-floating">
                 <textarea
