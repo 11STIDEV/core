@@ -18,7 +18,8 @@ ALLOWED_HOSTS = [
     'http://54.233.222.208',
     'http://www.professor.portalcci.com.br',
     'https://www.professor.portalcci.com.br',
-    'www.professor.portalcci.com.br'
+    'www.professor.portalcci.com.br',
+    'professor.portalcci.com.br',
 ]
 
 # Apps
