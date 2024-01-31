@@ -16,7 +16,9 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '18.231.117.87',
     'http://18.231.117.87',
-    'http://professor.portalcci.com.br',
+    'http://www.professor.portalcci.com.br',
+    'https://www.professor.portalcci.com.br',
+    'www.professor.portalcci.com.br'
 ]
 
 # Apps
@@ -84,13 +86,16 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-if DEBUG:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / 'db.sqlite3',
-        }
+DATABASES = {
+    'default': {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": 'postgres',
+        "USER": 'postgres',
+        "PASSWORD": 'admins3t4p3',
+        "HOST": 'portal-professor.cejb4rn9axzb.us-east-1.rds.amazonaws.com',
+        "PORT": '5432',
     }
+}
 
 
 # Password validation
