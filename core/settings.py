@@ -16,10 +16,10 @@ DEBUG = False
 ALLOWED_HOSTS = [
     '18.229.127.255',
     'http://18.229.127.255',
-    'http://www.professor.portalcci.com.br',
-    'https://www.professor.portalcci.com.br',
-    'www.professor.portalcci.com.br',
-    'professor.portalcci.com.br',
+    'http://www.cciweb.com.br',
+    'https://www.cciweb.com.br',
+    'www.cciweb.com.br',
+    'cciweb.com.br',
 ]
 
 # Apps
