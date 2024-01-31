@@ -14,8 +14,8 @@ SECRET_KEY = get_random_secret_key()
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    '54.233.222.208',
-    'http://54.233.222.208',
+    '18.229.127.255',
+    'http://18.229.127.255',
     'http://www.professor.portalcci.com.br',
     'https://www.professor.portalcci.com.br',
     'www.professor.portalcci.com.br',
