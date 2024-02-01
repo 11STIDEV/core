@@ -172,7 +172,7 @@ def planjemanto_teste(request, username, turma):
             arqv_usuarios = json.load(arqv_u)
 
             for usuario in arqv_usuarios:
-                if usuario['colaborador_email'] == request.user.username:
+                if usuario['colaborador_email'] == request.user.emails:
                     codigo_usuario = usuario['colaborador_codigo']
 
                     break
