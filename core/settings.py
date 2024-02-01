@@ -62,6 +62,8 @@ INSTALLED_APPS = [
     'app',
 ]
 
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
+
 INSTALLED_APPS += ('django_summernote', )
 
 SITE_ID = 1
